@@ -1,17 +1,31 @@
-/* Layout container */
-.app-layout {
+/* Layout/style.css */
+
+/* --- Layout Container --- */
+.app-container {
   min-height: 100vh;
+  background: var(--bg-page);
   display: flex;
   flex-direction: column;
+  font-family: 'DM Sans', sans-serif;
+  /* Ensuring modern font feel if available, else falls back to global */
 }
 
-/* Navbar */
+.main-content {
+  flex: 1;
+  padding: 30px 40px;
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.content-wrapper {
+  width: 100%;
+}
+
+/* --- Premium Top Navigation (Dark Theme) --- */
 .top-navbar {
-  height: 70px;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  background: var(--bg-navbar);
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -19,71 +33,157 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  /* Stronger shadow for dark navbar */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.nav-left {
+.navbar-top {
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: 60px;
+  flex: 1;
 }
 
+/* Logo */
 .logo-container {
   display: flex;
   align-items: center;
   gap: 12px;
+  cursor: pointer;
 }
 
 .logo-icon {
   width: 40px;
   height: 40px;
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-  color: white;
-  border-radius: 10px;
+  background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
-  font-size: 18px;
-  box-shadow: 0 4px 6px rgba(99, 102, 241, 0.3);
+  color: white;
+  box-shadow: 0 4px 10px rgba(67, 24, 255, 0.2);
+}
+
+.logo-text-group {
+  display: flex;
+  flex-direction: column;
 }
 
 .logo-text {
   font-size: 20px;
-  font-weight: 700;
-  background: linear-gradient(90deg, #1f2937, #4b5563);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  color: white;
+  /* White text on dark navbar */
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.logo-subtitle {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
   margin: 0;
 }
 
+/* Navigation Menu */
 .top-nav-menu {
   display: flex;
-  gap: 8px;
+  align-items: center;
+  gap: 10px;
 }
 
-.top-nav-item {
-  text-decoration: none;
-  color: #6b7280;
-  padding: 8px 16px;
-  border-radius: 8px;
-  font-size: 14px;
+.top-nav-item,
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  color: rgba(255, 255, 255, 0.7);
+  /* Light grey text */
   font-weight: 500;
-  transition: all var(--transition-speed);
+  font-size: 14px;
+  border-radius: 30px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+}
+
+.top-nav-item:hover,
+.dropdown-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.top-nav-item.active,
+.dropdown-toggle.active {
+  background: var(--accent-orange);
+  /* Peach accent for active state */
+  color: var(--primary-color);
+  /* Dark text on peach bg */
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Icons in Nav */
+.top-nav-item svg,
+.dropdown-toggle svg {
+  stroke-width: 2.5px;
+}
+
+/* Dropdowns */
+.dropdown-container {
   position: relative;
 }
 
-.top-nav-item:hover {
-  color: var(--primary-color);
-  background: rgba(99, 102, 241, 0.05);
+.dropdown-menu {
+  position: absolute;
+  top: 120%;
+  left: 0;
+  background: white;
+  min-width: 220px;
+  border-radius: 16px;
+  padding: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  animation: slideDown 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.top-nav-item.active {
-  color: var(--primary-color);
-  background: rgba(99, 102, 241, 0.1);
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* User Profile */
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  color: var(--text-dark);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 10px;
+  transition: all 0.1s;
+}
+
+.dropdown-item:hover {
+  background: #F4F7FE;
+  color: var(--secondary-color);
+}
+
+/* User Section */
 .nav-right {
   display: flex;
   align-items: center;
@@ -94,98 +194,127 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  padding: 6px 12px;
+  background: white;
+  border-radius: 40px;
+  border: 1px solid #F4F7FE;
 }
 
 .avatar {
-  width: 38px;
-  height: 38px;
-  background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
-  color: var(--primary-color);
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #FFAB91, #FFB547);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 600;
-  font-size: 14px;
-  border: 2px solid white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  color: white;
+  font-weight: 700;
+  font-size: 12px;
 }
 
-.user-info div {
-  line-height: 1.2;
+.user-info {
+  display: flex;
+  flex-direction: column;
 }
 
 .user-name {
   font-size: 13px;
-  font-weight: 600;
-  color: #1f2937;
+  font-weight: 700;
+  color: var(--primary-color);
   margin: 0;
 }
 
 .user-role {
-  font-size: 11px;
-  color: #6b7280;
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: 600;
   margin: 0;
-  text-transform: capitalize;
+  text-transform: uppercase;
 }
 
 .logout-btn {
-  background: #fee2e2;
-  color: #ef4444;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
   border: none;
-  padding: 8px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s;
+  background: #FFF0F0;
+  color: #FF5B5B;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
 .logout-btn:hover {
-  background: #fecaca;
-  transform: translateY(-1px);
+  background: #FFE0E0;
+  transform: scale(1.05);
 }
 
-/* Main Content */
-.main-content {
-  flex: 1;
-  padding: 32px 40px;
-  max-width: 1440px;
-  margin: 0 auto;
-  width: 100%;
-  animation: fadeIn 0.5s ease-out;
+/* Footer in Navbar? Usually hiddden or minimal */
+.navbar-footer {
+  display: none;
+  /* Hide footer in top nav */
 }
 
-.content-area {
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(10px);
-  border-radius: 24px;
-  min-height: calc(100vh - 140px);
-  padding: 32px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-}
 
 /* Responsive */
-@media (max-width: 1024px) {
-  .top-navbar {
-    padding: 0 20px;
-  }
-
-  .nav-left {
-    gap: 20px;
-  }
-
-  .top-nav-item {
-    padding: 6px 12px;
-    font-size: 13px;
+@media (max-width: 1200px) {
+  .navbar-top {
+    gap: 30px;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .top-nav-menu {
     display: none;
-    /* Mobile menu implementation usually needed here */
+    /* In real app would be hamburger */
   }
+}
+
+/* User Profile Icon */
+.user-profile-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: white;
+}
+
+.user-profile-icon:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.05);
+}
+
+/* Profile Dropdown Menu */
+.profile-menu {
+  padding: 8px 0;
+}
+
+.profile-info {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 4px;
+}
+
+.profile-role {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+  text-align: center;
+}
+
+.logout-item {
+  color: #ef4444 !important;
+}
+
+.logout-item:hover {
+  background: #fef2f2 !important;
 }
