@@ -1,23 +1,26 @@
 .polls-container {
     padding: 24px;
-    background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+    background: var(--bg-gradient);
     min-height: 100vh;
 }
 
 .polls-hero {
     text-align: center;
     margin-bottom: 32px;
-    padding: 20px;
-    background: linear-gradient(135deg, var(--primary-color) 0%, #2b6a81 100%);
-    border-radius: 12px;
-    color: white;
-    border: 2px solid #1f4d5e;
+    padding: 16px 0;
+    background: transparent;
+    border-radius: 0;
+    color: #1F2B3A;
+    border: none;
+    box-shadow: none;
 }
 
 .polls-title {
     margin: 0;
-    font-size: 32px;
+    font-size: 36px;
     font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #1F2B3A;
 }
 
 .create-section {
@@ -28,45 +31,44 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 12px 24px;
-    background: var(--primary-color);
+    padding: 12px 28px;
+    background: #1F2B3A;
     color: white;
-    border: 2px solid var(--primary-color);
+    border: none;
     border-radius: 8px;
     cursor: pointer;
     font-size: 15px;
     font-weight: 600;
     transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(31, 43, 58, 0.12);
 }
 
 .btn-create:hover {
-    background: #2b6a81;
-    border-color: #2b6a81;
+    background: #2a3847;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(60, 141, 161, 0.3);
+    box-shadow: 0 4px 12px rgba(31, 43, 58, 0.2);
 }
 
 .form-card {
-    background: white;
-    border-radius: 12px;
-    padding: 24px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: var(--bg-card);
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 1px 3px rgba(31, 43, 58, 0.08);
     margin-top: 16px;
-    border: 2px solid var(--primary-color);
+    border: 1px solid rgba(31, 43, 58, 0.08);
 }
 
-.form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 16px;
-}
-
+    color: var(--text-muted);
+    border: 2px dashed var(--primary-color);
 .form-grid input,
 .form-grid textarea {
     padding: 12px;
     border: 2px solid #e5e7eb;
     border-radius: 8px;
-    font-size: 14px;
+    background: var(--bg-card);
     font-family: inherit;
     transition: all 0.3s ease;
 }
@@ -81,7 +83,7 @@
 .polls-list {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 20px;
 }
 
 .empty-state {
@@ -94,40 +96,30 @@
 }
 
 .empty-state svg {
-    margin-bottom: 16px;
+    color: var(--text-main);
     opacity: 0.6;
 }
 
 .poll-card {
-    background: white;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    background: var(--bg-card);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
     transition: all 0.3s ease;
-    border: 2px solid #e5e7eb;
+    border: 1px solid rgba(107, 114, 128, 0.1);
 }
 
 .poll-card:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
-    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
     border-color: var(--primary-color);
-}
-
-.poll-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-    margin-bottom: 16px;
-    gap: 16px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid #f0f0f0;
 }
 
 .poll-title {
     margin: 0 0 8px 0;
     font-size: 18px;
     font-weight: 700;
-    color: var(--primary-color);
+    color: #1F2B3A;
 }
 
 .poll-meta {
@@ -137,25 +129,26 @@
 }
 
 .poll-badge {
-    background: linear-gradient(135deg, var(--primary-color) 0%, #2b6a81 100%);
-    padding: 8px 12px;
+    padding: 8px 16px;
+    background: #1F2B3A;
     border-radius: 6px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     color: white;
     white-space: nowrap;
-    border: 2px solid #1f4d5e;
+    border: none;
+    box-shadow: 0 1px 3px rgba(31, 43, 58, 0.1);
 }
 
 .poll-desc {
     margin: 12px 0;
+    color: #1f2937;
+    line-height: 1.6;
+    padding: 12px 16px;
+    background: #F8FAFC;
+    border-left: 4px solid #1F2B3A;
+    border-radius: 6px;
     font-size: 14px;
-    color: #4b5563;
-    line-height: 1.5;
-    padding: 12px;
-    background: #f9fafb;
-    border-left: 3px solid var(--primary-color);
-    border-radius: 4px;
 }
 
 .poll-dates {
@@ -163,24 +156,24 @@
     font-size: 13px;
     color: #6b7280;
     padding: 8px 12px;
-    background: #eff6f9;
+    background: #F3F4F6;
     border-radius: 6px;
-    border: 1px solid #d0e8f2;
+    border: 1px solid rgba(31, 43, 58, 0.06);
 }
 
 .response-form {
-    background: #f9fafb;
+    background: var(--bg-page);
     padding: 16px;
-    border-radius: 8px;
+    border-radius: 12px;
     margin-top: 12px;
-    border: 2px solid #e5e7eb;
+    border: 1px solid rgba(107, 114, 128, 0.1);
 }
 
 .response-form label {
-    background: white;
-    border: 2px solid #ddd;
-    padding: 10px 12px;
-    border-radius: 6px;
+    background: var(--bg-card);
+    border: 1px solid rgba(107, 114, 128, 0.2);
+    padding: 12px 16px;
+    border-radius: 8px;
     margin-bottom: 8px;
     display: flex;
     align-items: center;
@@ -190,7 +183,7 @@
 }
 
 .response-form label:hover {
-    background: #f3f4f6;
+    background: rgba(99, 102, 241, 0.02);
     border-color: var(--primary-color);
 }
 
@@ -203,13 +196,13 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: #dcfce7;
-    color: #166534;
+    background: var(--accent-teal);
+    color: var(--text-light);
     padding: 10px 16px;
     border-radius: 6px;
     font-size: 14px;
     font-weight: 600;
-    border: 2px solid #bbf7d0;
+    border: 2px solid var(--primary-color);
 }
 
 .btn-respond {
@@ -227,27 +220,25 @@
     transition: all 0.3s ease;
 }
 
-.btn-respond:hover {
-    background: #f59e0b;
-    border-color: #d97706;
-    transform: translateY(-1px);
-}
-
-.btn-primary {
-    padding: 10px 16px;
-    background: var(--primary-color);
+.btn-respond {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: #1F2B3A;
     color: white;
-    border: 2px solid var(--primary-color);
-    border-radius: 6px;
+    border: none;
+    border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
     font-size: 14px;
     transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(31, 43, 58, 0.12);
 }
-
-.btn-primary:hover:not(:disabled) {
-    background: #2b6a81;
-    border-color: #2b6a81;
+.btn-respond:hover {
+    background: #2a3847;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(31, 43, 58, 0.2);
 }
 
 .btn-primary:disabled {
@@ -261,11 +252,11 @@
 }
 
 .btn-outline {
-    padding: 10px 16px;
-    background: white;
-    color: var(--primary-color);
-    border: 2px solid var(--primary-color);
-    border-radius: 6px;
+    padding: 10px 20px;
+    background: var(--bg-card);
+    color: #1F2B3A;
+    border: 1px solid #1F2B3A;
+    border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
     font-size: 14px;
@@ -273,19 +264,19 @@
 }
 
 .btn-outline:hover {
-    background: var(--primary-color);
+    background: #1F2B3A;
     color: white;
+    box-shadow: 0 2px 8px rgba(31, 43, 58, 0.12);
 }
 
 .responses-section {
     margin-top: 20px;
     padding: 16px;
     padding-top: 20px;
-    border-top: 2px solid #e5e7eb;
-    background: #f9fafb;
-    border-radius: 8px;
-    border: 2px solid #e5e7eb;
-    border-top: 2px solid var(--primary-color);
+    border-top: 1px solid rgba(31, 43, 58, 0.1);
+    background: #FFFFFF;
+    border-radius: 12px;
+    border: 1px solid rgba(31, 43, 58, 0.08);
 }
 
 .btn-view-non-responders {
@@ -293,19 +284,21 @@
     align-items: center;
     gap: 8px;
     padding: 10px 16px;
-    background: #8b5cf6;
+    background: #1F2B3A;
     color: white;
-    border: 2px solid #7c3aed;
+    border: none;
     border-radius: 6px;
     cursor: pointer;
     font-weight: 600;
     font-size: 14px;
     transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(31, 43, 58, 0.12);
 }
 
 .btn-view-non-responders:hover:not(:disabled) {
-    background: #7c3aed;
-    border-color: #6d28d9;
+    background: #2a3847;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(31, 43, 58, 0.2);
 }
 
 .btn-close-poll {
@@ -313,19 +306,21 @@
     align-items: center;
     gap: 8px;
     padding: 10px 16px;
-    background: #ef4444;
+    background: #DC2626;
     color: white;
-    border: 2px solid #dc2626;
+    border: none;
     border-radius: 6px;
     cursor: pointer;
     font-weight: 600;
     font-size: 14px;
     transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(220, 38, 38, 0.12);
 }
 
 .btn-close-poll:hover {
-    background: #dc2626;
-    border-color: #b91c1c;
+    background: #991B1B;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2);
 }
 
 /* Modal Styles */
@@ -344,15 +339,15 @@
 }
 
 .modal-content {
-    background: white;
-    border-radius: 12px;
-    padding: 24px;
+    background: var(--bg-card);
+    border-radius: 16px;
+    padding: 28px;
     max-width: 700px;
     width: 100%;
     max-height: 90vh;
     overflow-y: auto;
-    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
-    border: 2px solid var(--primary-color);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(31, 43, 58, 0.08);
 }
 
 .summary-box {
@@ -363,11 +358,11 @@
 }
 
 .summary-stat {
-    background: white;
+    background: var(--bg-page);
     padding: 16px;
-    border-radius: 8px;
+    border-radius: 12px;
     text-align: center;
-    border: 2px solid var(--primary-color);
+    border: 1px solid rgba(99, 102, 241, 0.1);
 }
 
 .stat-label {
@@ -382,7 +377,7 @@
     display: block;
     font-size: 24px;
     font-weight: 700;
-    color: var(--primary-color);
+    color: #1F2B3A;
 }
 
 .non-responders-table {
@@ -395,13 +390,13 @@
 }
 
 .non-responders-table th {
-    background: var(--primary-color);
+    background: #1F2B3A;
     color: white;
     padding: 12px;
     text-align: left;
     font-weight: 600;
     font-size: 14px;
-    border-bottom: 2px solid #1f4d5e;
+    border-bottom: none;
 }
 
 .non-responders-table td {
@@ -423,17 +418,19 @@
     align-items: center;
     gap: 8px;
     padding: 12px 20px;
-    background: #3b82f6;
+    background: #1F2B3A;
     color: white;
-    border: 2px solid #2563eb;
+    border: none;
     border-radius: 6px;
     cursor: pointer;
     font-weight: 600;
     font-size: 14px;
     transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(31, 43, 58, 0.12);
 }
 
 .btn-print:hover {
-    background: #2563eb;
-    border-color: #1d4ed8;
+    background: #2a3847;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(31, 43, 58, 0.2);
 }

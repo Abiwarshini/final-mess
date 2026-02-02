@@ -1,0 +1,111 @@
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    color: var(--text-sidebar);
+}
+
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 10px;
+}
+
+.logo-icon-box {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-sidebar);
+}
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+}
+
+.nav-item.active {
+    background: white;
+    color: var(--primary-color);
+    font-weight: 700;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Nav Groups */
+.nav-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.chevron {
+    margin-left: auto;
+    transition: transform 0.2s;
+}
+
+.nav-item.open .chevron {
+    transform: rotate(180deg);
+}
+
+.sub-menu {
+    display: flex;
+    flex-direction: column;
+    padding-left: 50px;
+    gap: 5px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.sub-item {
+    text-decoration: none;
+    color: var(--text-sidebar);
+    font-size: 13px;
+    padding: 8px 0;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.sub-item:hover,
+.sub-item.active {
+    color: white;
+    opacity: 1;
+}
+
+.nav-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 20px 0;
+}

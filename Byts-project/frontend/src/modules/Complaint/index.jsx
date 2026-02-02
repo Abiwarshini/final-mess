@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { MessageSquare, Send, CheckCircle } from "lucide-react";
+import { MessageSquare, Send } from "lucide-react";
 import { api } from "../../utils/api";
 import "./style.css";
 
@@ -136,7 +136,6 @@ const Complaint = () => {
 
         {complaints.length === 0 ? (
           <div className="empty-state">
-            <CheckCircle size={40} />
             <p>No complaints found</p>
           </div>
         ) : (
@@ -148,7 +147,7 @@ const Complaint = () => {
                 </div>
                 <div>
                   <strong>{c.isAnonymous ? "Anonymous" : c.studentName}</strong>
-                  <p className="meta">{formatDate(c.date)} • {c.category}</p>
+                  <p className="meta">{formatDate(c.createdAt)} • {c.category}</p>
                 </div>
                 <span className={`status ${c.status === "Resolved" ? "ok" : "pending"}`}>
                   {c.status}
