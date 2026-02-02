@@ -132,6 +132,10 @@ const Navbar = ({ userRole, onLogout }) => {
             <Clock size={18} />
             <span>LEAVES</span>
           </NavLink>
+          <NavLink to="/poll" className="top-nav-item" onClick={closeDropdown}>
+            <Calendar size={18} />
+            <span>POLL</span>
+          </NavLink>
 
           {userRole === 'warden' && (
             <NavLink to="/students" className="top-nav-item" onClick={closeDropdown}>
@@ -142,36 +146,23 @@ const Navbar = ({ userRole, onLogout }) => {
         </nav>
       </div>
 
-      {/* User Dropdown Section */}
+      {/* User Profile Icon */}
       <div className="nav-right">
         <div className="dropdown-container">
           <div
-            className="user-profile"
+            className="user-profile-icon"
             onClick={() => toggleDropdown('profile')}
-            style={{ cursor: 'pointer' }}
           >
-            <div className="avatar">
-              <User size={18} color="white" />
-            </div>
-            <div className="user-info">
-              <p className="user-name">{displayRole}</p>
-            </div>
-            <ChevronDown size={14} color="var(--text-muted)" />
+            <User size={20} />
           </div>
 
           {openDropdown === 'profile' && (
-            <div className="dropdown-menu profile-menu" style={{ right: 0, left: 'auto', minWidth: '180px' }}>
-              <div style={{ padding: '10px 16px', borderBottom: '1px solid #eee', marginBottom: '5px' }}>
-                <p style={{ margin: 0, fontSize: '12px', color: 'var(--text-muted)' }}>Signed in as</p>
-                <p style={{ margin: 0, fontWeight: '700', color: 'var(--primary-color)' }}>{displayRole}</p>
+            <div className="dropdown-menu profile-menu" style={{ right: 0, left: 'auto', minWidth: '160px' }}>
+              <div className="profile-info">
+                <p className="profile-role">{displayRole}</p>
               </div>
 
-              <NavLink to="/dashboard" className="dropdown-item" onClick={closeDropdown}>
-                <LayoutDashboard size={16} />
-                <span>Dashboard</span>
-              </NavLink>
-
-              <div className="dropdown-item" onClick={onLogout} style={{ color: '#EF4444', cursor: 'pointer' }}>
+              <div className="dropdown-item logout-item" onClick={onLogout}>
                 <LogOut size={16} />
                 <span>Logout</span>
               </div>

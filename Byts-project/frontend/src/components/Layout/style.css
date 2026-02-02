@@ -258,6 +258,7 @@
   /* Hide footer in top nav */
 }
 
+
 /* Responsive */
 @media (max-width: 1200px) {
   .navbar-top {
@@ -270,4 +271,50 @@
     display: none;
     /* In real app would be hamburger */
   }
+}
+
+/* User Profile Icon */
+.user-profile-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: white;
+}
+
+.user-profile-icon:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.05);
+}
+
+/* Profile Dropdown Menu */
+.profile-menu {
+  padding: 8px 0;
+}
+
+.profile-info {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 4px;
+}
+
+.profile-role {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+  text-align: center;
+}
+
+.logout-item {
+  color: #ef4444 !important;
+}
+
+.logout-item:hover {
+  background: #fef2f2 !important;
 }

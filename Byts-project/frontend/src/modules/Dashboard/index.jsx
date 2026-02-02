@@ -6,9 +6,10 @@ import {
   MessageCircle,
   DoorOpen,
   Clock,
-  Zap,
   Users,
-  Bell
+  Bell,
+  ArrowRight,
+  CheckCircle
 } from 'lucide-react';
 import './style.css';
 
@@ -20,164 +21,221 @@ const Dashboard = ({ userRole }) => {
     return 'Good Evening';
   };
 
-  const quickAccessLinks = [
+  const quickStats = [
+    { label: 'Total Beds', value: '500' },
+    { label: 'Occupancy Rate', value: '85%' },
+    { label: 'Active Events', value: '12' }
+  ];
+
+  const mainFeatures = [
     {
       title: 'Events & Announcements',
+      description: 'Stay updated with all hostel events and important announcements',
       icon: Calendar,
       path: '/poll',
-      color: '#3498DB',
-      bgColor: '#EBF5FB'
+      image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=300&fit=crop',
+      color: '#3b82f6'
     },
     {
       title: 'Mess Committee',
+      description: 'View mess schedules, menus, and committee meetings',
       icon: UtensilsCrossed,
       path: '/mess-committee',
-      color: '#E74C3C',
-      bgColor: '#FADBD8'
-    },
-    {
-      title: 'Token Allocation',
-      icon: Zap,
-      path: '/token-allocation',
-      color: '#F39C12',
-      bgColor: '#FEF5E7',
-      restrictTo: 'caretaker'
-    },
-    {
-      title: 'Volunteers',
-      icon: Users,
-      path: '/volunteers',
-      color: '#27AE60',
-      bgColor: '#D5F4E6'
-    },
-    {
-      title: 'Feedback',
-      icon: MessageCircle,
-      path: '/feedback',
-      color: '#9B59B6',
-      bgColor: '#EBDEF0'
-    },
-    {
-      title: 'Complaints',
-      icon: Bell,
-      path: '/complaint',
-      color: '#E67E22',
-      bgColor: '#FEF0E7'
+      image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&h=300&fit=crop',
+      color: '#ef4444'
     },
     {
       title: 'Room Allocation',
+      description: 'Manage room assignments and view availability',
       icon: DoorOpen,
       path: '/room-allocation',
-      color: '#16A085',
-      bgColor: '#D1F2EB'
-    },
-    {
-      title: 'Leaves',
-      icon: Clock,
-      path: '/leaves',
-      color: '#8E44AD',
-      bgColor: '#F4ECF7'
+      image: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=400&h=300&fit=crop',
+      color: '#10b981'
     }
   ];
 
-  const filteredLinks = quickAccessLinks.filter(link => {
-    if (link.restrictTo && link.restrictTo !== userRole) {
-      return false;
-    }
-    return true;
-  });
-
-  const stats = [
-    { label: 'Active Events', value: '5', icon: Calendar, color: '#3498DB' },
-    { label: 'Committee Members', value: '8', icon: Users, color: '#27AE60' },
-    { label: 'Pending Requests', value: '3', icon: Clock, color: '#E74C3C' },
-    { label: 'Volunteers', value: '12', icon: Users, color: '#F39C12' }
+  const quickLinks = [
+    { title: 'Volunteers', icon: Users, path: '/volunteers', color: '#8b5cf6' },
+    { title: 'Feedback', icon: MessageCircle, path: '/feedback', color: '#f59e0b' },
+    { title: 'Complaints', icon: Bell, path: '/complaint', color: '#ec4899' },
+    { title: 'Leaves', icon: Clock, path: '/leaves', color: '#06b6d4' }
   ];
 
   return (
     <div className="dashboard-container">
-      {/* Welcome Header */}
-      <div className="dashboard-header">
-        <div className="welcome-section">
-          <h1 className="welcome-title">{getGreeting()}! 👋</h1>
-          <p className="welcome-subtitle">Welcome to Hostel Management System</p>
-        </div>
-        <div className="hostel-info">
-          <div className="info-card">
-            <span className="info-icon">🏢</span>
-            <div className="info-text">
-              <p className="info-label">Your Hostel</p>
-              <p className="info-value">Central Hostel</p>
+      {/* Hero Section */}
+      <div className="hero-section">
+        <div className="hero-content">
+          <div className="hero-text">
+            <h1 className="hero-title">
+              HOSTEL — amazing hostel for the free spirited student
+            </h1>
+            <p className="hero-description">
+              Experience comfortable living with modern amenities. Your home away from home with 24/7 support and vibrant community.
+            </p>
+
+            <div className="hero-stats">
+              {quickStats.map((stat, index) => (
+                <div key={index} className="stat-item">
+                  <div className="stat-value">{stat.value}</div>
+                  <div className="stat-label">{stat.label}</div>
+                </div>
+              ))}
             </div>
+          </div>
+
+          <div className="hero-image">
+            <img
+              src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=600&h=400&fit=crop"
+              alt="Hostel Room"
+              onError={(e) => {
+                e.target.style.display = 'none';
+                e.target.parentElement.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+              }}
+            />
           </div>
         </div>
       </div>
 
-      {/* Quick Stats */}
-      <div className="stats-section">
-        <h2 className="section-title">Quick Overview</h2>
-        <div className="stats-grid">
-          {stats.map((stat, index) => {
-            const Icon = stat.icon;
-            return (
-              <div key={index} className="stat-card">
-                <div className="stat-icon" style={{ backgroundColor: `${stat.color}20`, color: stat.color }}>
-                  <Icon size={24} />
-                </div>
-                <div className="stat-content">
-                  <p className="stat-value">{stat.value}</p>
-                  <p className="stat-label">{stat.label}</p>
-                </div>
-              </div>
-            );
-          })}
+      {/* Main Features Section */}
+      <div className="features-section">
+        <div className="section-header">
+          <h2 className="section-title">Hostel Services</h2>
+          <button className="view-all-btn">
+            View all <ArrowRight size={16} />
+          </button>
         </div>
-      </div>
 
-      {/* Quick Access */}
-      <div className="quick-access-section">
-        <h2 className="section-title">Quick Access</h2>
-        <div className="quick-access-grid">
-          {filteredLinks.map((link, index) => {
-            const Icon = link.icon;
+        <div className="features-grid">
+          {mainFeatures.map((feature, index) => {
+            const Icon = feature.icon;
             return (
               <NavLink
                 key={index}
-                to={link.path}
-                className="quick-access-card"
-                style={{
-                  '--card-color': link.color,
-                  '--card-bg': link.bgColor
-                }}
+                to={feature.path}
+                className="feature-card"
               >
-                <div className="card-icon">
-                  <Icon size={28} />
+                <div className="feature-image">
+                  <img
+                    src={feature.image}
+                    alt={feature.title}
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.parentElement.style.background = feature.color;
+                    }}
+                  />
+                  <div className="feature-overlay">
+                    <Icon size={32} color="white" />
+                  </div>
                 </div>
-                <h3 className="card-title">{link.title}</h3>
-                <span className="card-arrow">→</span>
+                <div className="feature-content">
+                  <h3 className="feature-title">{feature.title}</h3>
+                  <p className="feature-description">{feature.description}</p>
+                  <div className="feature-footer">
+                    <span className="feature-link">Learn more →</span>
+                  </div>
+                </div>
               </NavLink>
             );
           })}
         </div>
       </div>
 
-      {/* Info Section */}
-      <div className="info-section">
-        <div className="info-box">
-          <div className="info-icon-large">📢</div>
-          <div className="info-content">
-            <h3>Announcements</h3>
-            <p>Check back soon for important hostel announcements and updates</p>
-          </div>
+      {/* Quick Actions - Improved Design */}
+      <div className="quick-actions-section">
+        <div className="quick-actions-grid">
+          {quickLinks.map((link, index) => {
+            const Icon = link.icon;
+            return (
+              <NavLink
+                key={index}
+                to={link.path}
+                className="action-card"
+              >
+                <div className="action-icon" style={{ background: `${link.color}15`, color: link.color }}>
+                  <Icon size={20} />
+                </div>
+                <span className="action-title">{link.title}</span>
+                <ArrowRight size={18} className="action-arrow" style={{ color: link.color }} />
+              </NavLink>
+            );
+          })}
         </div>
-        <div className="info-box">
-          <div className="info-icon-large">📅</div>
-          <div className="info-content">
-            <h3>Upcoming Events</h3>
-            <p>Stay tuned for interesting events and activities in your hostel</p>
+      </div>
+
+      {/* Announcements & Updates */}
+      <div className="announcements-section">
+        <h2 className="section-title">Latest Updates</h2>
+        <div className="announcements-grid">
+          <div className="announcement-card primary">
+            <div className="announcement-header">
+              <div className="announcement-badge">Important</div>
+              <span className="announcement-date">Today</span>
+            </div>
+            <h3>Mess Fee Payment Reminder</h3>
+            <p>Payment deadline is on 15th of every month. Please ensure timely payment to avoid late fees.</p>
+          </div>
+
+          <div className="announcement-card success">
+            <div className="announcement-header">
+              <div className="announcement-badge">Event</div>
+              <span className="announcement-date">March 20</span>
+            </div>
+            <h3>Annual Hostel Fest 2024</h3>
+            <p>Join us for the biggest celebration of the year! Register now to participate in various competitions and activities.</p>
+          </div>
+
+          <div className="announcement-card warning">
+            <div className="announcement-header">
+              <div className="announcement-badge">Notice</div>
+              <span className="announcement-date">This Sunday</span>
+            </div>
+            <h3>Scheduled Maintenance</h3>
+            <p>Water supply will be temporarily unavailable from 8 AM to 2 PM. Please plan accordingly.</p>
           </div>
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="dashboard-footer">
+        <div className="footer-content">
+          <div className="footer-section">
+            <h3>HOSTEL</h3>
+            <p>Your home away from home. Experience comfortable living with modern amenities and vibrant community.</p>
+          </div>
+
+          <div className="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><NavLink to="/mess-committee">Mess Committee</NavLink></li>
+              <li><NavLink to="/poll">Events</NavLink></li>
+              <li><NavLink to="/room-allocation">Room Allocation</NavLink></li>
+              <li><NavLink to="/volunteers">Volunteers</NavLink></li>
+            </ul>
+          </div>
+
+          <div className="footer-section">
+            <h4>Support</h4>
+            <ul>
+              <li><NavLink to="/feedback">Feedback</NavLink></li>
+              <li><NavLink to="/complaint">Complaints</NavLink></li>
+              <li><NavLink to="/leaves">Leave Requests</NavLink></li>
+            </ul>
+          </div>
+
+          <div className="footer-section">
+            <h4>Contact</h4>
+            <p>Hostel Office<br />
+              Mon - Fri: 9:00 AM - 6:00 PM<br />
+              Email: hostel@university.edu<br />
+              Phone: +1 234 567 8900</p>
+          </div>
+        </div>
+
+        <div className="footer-bottom">
+          <p>&copy; 2024 Hostel Management System. All rights reserved.</p>
+        </div>
+      </footer>
     </div>
   );
 };
