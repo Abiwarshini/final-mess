@@ -11,12 +11,17 @@ import {
   WorkTransparency,
   Feedback,
   Complaint,
+  StudentList
   MenuProcessing,
   StudentList,
   SpecialPermission,
   Events
 } from './modules';
 import Signup from './modules/Auth/Signup';
+import { DayView } from './modules/menu/DayView';
+import { WeeklyOverview } from './modules/menu/WeeklyOverview';
+import { MenuProvider } from './modules/menu/MenuContext';
+import { DebugPage } from './modules/menu/DebugPage';
 import './App.css';
 
 // Protected Route Component
@@ -48,7 +53,7 @@ function App() {
     setUserRole(user.role);
     localStorage.setItem('isAuthenticated', 'true');
     localStorage.setItem('userRole', user.role);
-    // currentUser is already set in Login.jsx to localStorage, but syncing state here
+    localStorage.setItem('currentUser', JSON.stringify(user));
   };
 
   const handleLogout = () => {
