@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { api } from '../../utils/api';
 import './style.css';
-import { Clock, Calendar, FileText, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
+import { Clock, Calendar, FileText, CheckCircle, XCircle, AlertCircle, ArrowRight } from 'lucide-react';
 
 const SpecialPermission = () => {
+    const navigate = useNavigate();
     const [userRole, setUserRole] = useState('student');
     const [currentUser, setCurrentUser] = useState(null);
     const [requests, setRequests] = useState([]);
@@ -94,6 +96,26 @@ const SpecialPermission = () => {
 
     const renderStudentView = () => (
         <div className="sp-container">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                <h2>Leave Requests</h2>
+                <button 
+                    onClick={() => navigate('/leaves')}
+                    style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        padding: '8px 16px',
+                        backgroundColor: '#007bff',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '4px',
+                        cursor: 'pointer',
+                        fontSize: '14px'
+                    }}
+                >
+                    Leaves <ArrowRight size={16} />
+                </button>
+            </div>
             <div className="sp-tabs">
                 <button
                     className={`sp-tab ${activeTab === 'new' ? 'active' : ''}`}

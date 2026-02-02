@@ -11,8 +11,6 @@ import {
   WorkTransparency,
   Feedback,
   Complaint,
-  StudentList
-  MenuProcessing,
   StudentList,
   SpecialPermission,
   Events
@@ -85,10 +83,20 @@ function App() {
                 <Route path="/volunteers" element={<Volunteers />} />
                 <Route path="/feedback" element={<Feedback />} />
                 <Route path="/complaint" element={<Complaint />} />
-                <Route path="/menu-processing" element={<MenuProcessing />} />
+                <Route path="/menu" element={
+                  <MenuProvider>
+                    <WeeklyOverview />
+                  </MenuProvider>
+                } />
+                <Route path="/menu/:dayId" element={
+                  <MenuProvider>
+                    <DayView />
+                  </MenuProvider>
+                } />
                 <Route path="/work-transparency" element={<WorkTransparency />} />
                 <Route path="/students" element={<StudentList />} />
                 <Route path="/special-permission" element={<SpecialPermission />} />
+                <Route path="/leaves" element={<SpecialPermission />} />
                 <Route path="/events" element={<Events />} />
               </Routes>
             </Layout>
