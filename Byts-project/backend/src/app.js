@@ -28,6 +28,8 @@ app.use('/api/work-transparency', workTransparencyRoutes);
 // Serve uploaded files
 const path = require('path');
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+app.use('/api/special-permission', require('./routes/leaveRequestRoutes'));
+app.use('/api/events', require('./routes/eventRoutes'));
 
 app.get('/', (req, res) => {
     res.send('API is running...');
