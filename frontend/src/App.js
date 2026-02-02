@@ -10,7 +10,8 @@ import {
   Feedback,
   Complaint,
   MenuProcessing,
-  StudentList
+  StudentList,
+  RoomAllocation
 } from './modules';
 import Signup from './modules/Auth/Signup';
 import './App.css';
@@ -83,6 +84,7 @@ function App() {
                 <Route path="/complaint" element={<Complaint />} />
                 <Route path="/menu-processing" element={<MenuProcessing />} />
                 <Route path="/students" element={<StudentList />} />
+                <Route path="/room-allocation" element={<RoomAllocation />} />
               </Routes>
             </Layout>
           </ProtectedRoute>

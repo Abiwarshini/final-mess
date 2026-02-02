@@ -6,3 +6,4 @@ export { default as Feedback } from './Feedback';
 export { default as Complaint } from './Complaint';
 export { default as MenuProcessing } from './MenuProcessing';
 export { default as StudentList } from './StudentList'; // Added StudentList
+export { default as RoomAllocation } from './RoomAllocation';
