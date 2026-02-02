@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import Login from './modules/Auth/Login';
+import Dashboard from './modules/Dashboard';
 import {
   MessCommiteeMeeting,
   TokenAllocation,
@@ -66,7 +67,7 @@ function App() {
         {/* Public Route */}
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={
-          isAuthenticated ? <Navigate to="/mess-committee" replace /> : <Login onLogin={handleLogin} />
+          isAuthenticated ? <Navigate to="/" replace /> : <Login onLogin={handleLogin} />
         } />
 
         {/* Protected Routes */}
@@ -74,7 +75,7 @@ function App() {
           <ProtectedRoute isAuthenticated={isAuthenticated}>
             <Layout userRole={userRole} onLogout={handleLogout}>
               <Routes>
-                <Route path="/" element={<Navigate to="/mess-committee" replace />} />
+                <Route path="/" element={<Dashboard userRole={userRole} />} />
                 <Route path="/mess-committee" element={<MessCommiteeMeeting />} />
                 <Route path="/token-allocation" element={<TokenAllocation />} />
                 <Route path="/poll" element={<Poll />} />

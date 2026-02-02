@@ -10,19 +10,40 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}:root {
-  --bg-page: #F4F8FB;              /* page background */
-  --bg-navbar: #5E8395;            /* top bar blue */
-  --bg-card: #FFFFFF;             /* white cards */
-  --card-blue: linear-gradient(135deg, #6BB7C7, #E8C3B9);
-  --card-orange: #F6C1A3;
+}
 
-  --primary-color: #1F3A4A;        /* headings */
-  --secondary-color: #5BA7B8;      /* buttons */
+:root {
+  /* Frame Layout Colors */
+  --bg-frame: #1F2B3A;
+  /* Deep Navy for the outer frame/sidebar */
+  --bg-card: #FFFFFF;
+  /* White for the floating content card */
+  --bg-page: #F4F7FE;
+  /* Light blue-grey for internal page backgrounds */
+
+  --primary-color: #1F2B3A;
+  /* Navy text */
+  --secondary-color: #5BA7B8;
+  /* Soft Teal */
+
+  --text-dark: #1F2B3A;
+  --text-muted: #94A3B8;
+  --text-light: #FFFFFF;
+  --text-sidebar: #9CA3AF;
+  --text-sidebar-active: #FFFFFF;
+
+  /* Navbar Specific - Dark Teal Theme */
+  --bg-navbar: #1F2B3A;
+  /* Deep Dark Teal from image */
+  --nav-text: #A3AED0;
+  --nav-text-active: #FFFFFF;
+  /* White for active state on dark bg */
+
+  /* Accents */
   --accent-teal: #6BB7C7;
   --accent-orange: #F6C1A3;
 
-  --text-dark: #1F3A4A;
-  --text-muted: #7C8F9B;
-  --text-light: #FFFFFF;
+  --card-radius: 32px;
+  /* Large rounded corners for the "Floating Card" look */
+  --shadow-frame: 0px 0px 50px rgba(0, 0, 0, 0.25);
 }

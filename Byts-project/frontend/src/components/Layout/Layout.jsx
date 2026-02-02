@@ -4,11 +4,11 @@ import './style.css';
 
 const Layout = ({ children, userRole, onLogout }) => {
   return (
-    <div className="app-layout">
+    <div className="app-container">
       <Navbar userRole={userRole} onLogout={onLogout} />
 
       <main className="main-content">
-        <div className="content-area">
+        <div className="content-wrapper">
           {children}
         </div>
       </main>
