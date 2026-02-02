@@ -9,7 +9,7 @@ const StudentList = () => {
     const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
-        const user = JSON.parse(localStorage.getItem('currentUser') || '{}');
+        const user = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
         if (user.hostel) {
             setCurrentWardenHostel(user.hostel);
         }

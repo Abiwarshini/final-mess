@@ -19,8 +19,8 @@ const MessCommiteeMeeting = () => {
   });
 
   useEffect(() => {
-    const role = localStorage.getItem('userRole');
-    const user = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    const role = sessionStorage.getItem('userRole');
+    const user = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
     if (role) setUserRole(role);
     setCurrentUser(user);
     fetchMeetings();
@@ -241,13 +241,13 @@ const MessCommiteeMeeting = () => {
                       <div style={{ marginTop: '12px', padding: '10px 12px', background: '#fef3c7', borderRadius: '8px', border: '1px solid #fcd34d' }}>
                         <p style={{ margin: '0 0 8px 0', fontSize: '13px', fontWeight: '600', color: '#92400e' }}>Will you attend this meeting?</p>
                         <div style={{ display: 'flex', gap: '8px' }}>
-                          <button 
+                          <button
                             onClick={() => handleRsvpSubmit(meetingId, true)}
                             style={{ padding: '6px 14px', background: '#10b981', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: '600', fontSize: '12px' }}
                           >
                             Yes, I'll Attend
                           </button>
-                          <button 
+                          <button
                             onClick={() => handleRsvpSubmit(meetingId, false)}
                             style={{ padding: '6px 14px', background: '#ef4444', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: '600', fontSize: '12px' }}
                           >

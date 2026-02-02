@@ -16,7 +16,7 @@ const Login = ({ onLogin }) => {
             const userData = await api.post('/auth/login', { email, password, role });
 
             // Store current user session
-            localStorage.setItem('currentUser', JSON.stringify(userData));
+            sessionStorage.setItem('currentUser', JSON.stringify(userData));
             onLogin(userData);
             navigate('/mess-committee');
         } catch (error) {

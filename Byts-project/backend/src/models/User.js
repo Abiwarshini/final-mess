@@ -6,6 +6,8 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true },
     role: { type: String, enum: ['student', 'warden', 'caretaker'], required: true },
     hostel: { type: String, required: true },
+    hasRoom: { type: Boolean, default: false },
+    roomId: { type: mongoose.Schema.Types.ObjectId, ref: 'Room' },
     // Student Specific
     rollNo: { type: String },
     room: { type: String },

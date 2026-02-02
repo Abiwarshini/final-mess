@@ -20,8 +20,8 @@ const SpecialPermission = () => {
     });
 
     useEffect(() => {
-        const role = localStorage.getItem('userRole');
-        const user = JSON.parse(localStorage.getItem('currentUser') || '{}');
+        const role = sessionStorage.getItem('userRole');
+        const user = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
         setUserRole(role);
         setCurrentUser(user);
         fetchRequests(role, user.id || user._id);

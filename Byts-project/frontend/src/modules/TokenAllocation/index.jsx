@@ -13,8 +13,8 @@ const TokenAllocation = () => {
 
     // Initial Load
     useEffect(() => {
-        const role = localStorage.getItem('userRole');
-        const user = JSON.parse(localStorage.getItem('currentUser') || '{}');
+        const role = sessionStorage.getItem('userRole');
+        const user = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
         setUserRole(role);
         setCurrentUser(user);
         fetchTokenEvents(user._id);
