@@ -3,4 +3,311 @@
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+}
+
+.menu-processing-container h2 {
+    margin: 0 0 1rem;
+    font-size: 1.5rem;
+    color: #1a1a2e;
+}
+
+.menu-processing-container h3 {
+    margin: 1.5rem 0 0.75rem;
+    font-size: 1.15rem;
+    color: #16213e;
+}
+
+.menu-loading,
+.menu-empty {
+    color: #666;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.menu-error {
+    background: #fee;
+    color: #c00;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+.menu-admin-msg {
+    background: #e8f5e9;
+    color: #2e7d32;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+.menu-week-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.menu-status {
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.menu-status-voting {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.menu-status-finalized {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+/* Finalized menu */
+.menu-final-section {
+    margin-top: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1rem;
+    background: #fafafa;
+}
+
+.menu-final-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+    margin-top: 0.75rem;
+}
+
+.menu-final-day {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    padding: 0.75rem;
+}
+
+.menu-final-day h4 {
+    margin: 0 0 0.5rem;
+    font-size: 0.9rem;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.25rem;
+}
+
+.menu-final-meal {
+    font-size: 0.85rem;
+    margin: 0.35rem 0;
+}
+
+.menu-vote-count {
+    color: #666;
+    font-weight: normal;
+}
+
+/* Voting section */
+.menu-vote-section {
+    margin-top: 1.5rem;
+}
+
+.menu-vote-hint {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.menu-vote-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.menu-vote-day-card {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.menu-vote-day-card h4 {
+    margin: 0 0 0.75rem;
+    font-size: 0.95rem;
+    color: #1a1a2e;
+}
+
+.menu-vote-meal-block {
+    margin-bottom: 0.75rem;
+}
+
+.menu-vote-meal-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 0.25rem;
+}
+
+.menu-no-options {
+    font-size: 0.85rem;
+    color: #999;
+    font-style: italic;
+}
+
+.menu-options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.menu-option-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.menu-option-label input[type="radio"] {
+    cursor: pointer;
+}
+
+/* Admin */
+.menu-admin-section {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+.menu-admin-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.menu-admin-tabs button {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    background: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.menu-admin-tabs button.active {
+    background: #1a1a2e;
+    color: #fff;
+    border-color: #1a1a2e;
+}
+
+.menu-admin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 400px;
+}
+
+.menu-admin-form label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.menu-admin-form input[type="text"],
+.menu-admin-form input[type="date"],
+.menu-admin-form select {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.menu-admin-form button {
+    padding: 0.6rem 1rem;
+    background: #1a1a2e;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    align-self: flex-start;
+}
+
+.menu-admin-form button:hover {
+    background: #16213e;
+}
+
+.menu-vote-stats {
+    margin-top: 1rem;
+}
+
+.menu-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-top: 0.75rem;
+}
+
+.menu-stats-day {
+    background: #f8f9fa;
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+}
+
+.menu-stats-day h4 {
+    margin: 0 0 0.5rem;
+    font-size: 0.9rem;
+}
+
+.menu-finalize-hint {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 0.5rem;
+}
+
+/* Option card layout similar to screenshot */
+.menu-option-cards {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.menu-option-card {
+    flex: 1 1 320px;
+    background: #fff;
+    border: 1px solid #e6e9ee;
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 1px 2px rgba(16,24,40,0.03);
+}
+
+.menu-option-card.voted {
+    border-color: #1a1a2e;
+}
+
+.menu-option-name {
+    font-weight: 600;
+    color: #233;
+}
+
+.vote-btn {
+    background: #f1f5f9;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    color: #1a1a2e;
+}
+
+.voted-btn {
+    background: #0f172a;
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
 }

@@ -33,7 +33,7 @@ const Navbar = ({ userRole, onLogout }) => {
           <NavLink to="/volunteers" className="top-nav-item">Volunteers</NavLink>
           <NavLink to="/feedback" className="top-nav-item">Feedback</NavLink>
           <NavLink to="/complaint" className="top-nav-item">Complaint</NavLink>
-          <NavLink to="/menu-processing" className="top-nav-item">Menu</NavLink>
+          <NavLink to="/menu" className="top-nav-item">Menu</NavLink>
 
           {userRole === 'warden' && (
             <NavLink to="/students" className="top-nav-item">Students</NavLink>

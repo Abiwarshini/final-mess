@@ -8,6 +8,7 @@ const complaintRoutes = require('./routes/complaintRoutes');
 const studentRoutes = require('./routes/studentRoutes');
 const volunteeringRoutes = require('./routes/volunteeringRoutes');
 const pollRoutes = require('./routes/pollRoutes');
+const menuRoutes = require('./routes/menuRoutes');
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use('/api/complaints', complaintRoutes);
 app.use('/api/students', studentRoutes);
 app.use('/api/volunteering', volunteeringRoutes);
 app.use('/api', pollRoutes);
+app.use('/api/menu', menuRoutes);
 
 app.get('/', (req, res) => {
     res.send('API is running...');

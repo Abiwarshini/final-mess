@@ -9,10 +9,13 @@ import {
   Volunteers,
   Feedback,
   Complaint,
-  MenuProcessing,
   StudentList
 } from './modules';
 import Signup from './modules/Auth/Signup';
+import { DayView } from './modules/menu/DayView';
+import { WeeklyOverview } from './modules/menu/WeeklyOverview';
+import { MenuProvider } from './modules/menu/MenuContext';
+import { DebugPage } from './modules/menu/DebugPage';
 import './App.css';
 
 // Protected Route Component
@@ -48,7 +51,7 @@ function App() {
     setCurrentUser(user);
     localStorage.setItem('isAuthenticated', 'true');
     localStorage.setItem('userRole', user.role);
-    // currentUser is already set in Login.jsx to localStorage, but syncing state here
+    localStorage.setItem('currentUser', JSON.stringify(user));
   };
 
   const handleLogout = () => {
@@ -62,32 +65,36 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Routes>
-        {/* Public Route */}
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={
-          isAuthenticated ? <Navigate to="/mess-committee" replace /> : <Login onLogin={handleLogin} />
-        } />
+      <MenuProvider>
+        <Routes>
+          {/* Public Route */}
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={
+            isAuthenticated ? <Navigate to="/mess-committee" replace /> : <Login onLogin={handleLogin} />
+          } />
 
-        {/* Protected Routes */}
-        <Route path="/*" element={
-          <ProtectedRoute isAuthenticated={isAuthenticated}>
-            <Layout userRole={userRole} onLogout={handleLogout}>
-              <Routes>
-                <Route path="/" element={<Navigate to="/mess-committee" replace />} />
-                <Route path="/mess-committee" element={<MessCommiteeMeeting />} />
-                <Route path="/token-allocation" element={<TokenAllocation />} />
-                <Route path="/poll" element={<Poll />} />
-                <Route path="/volunteers" element={<Volunteers />} />
-                <Route path="/feedback" element={<Feedback />} />
-                <Route path="/complaint" element={<Complaint />} />
-                <Route path="/menu-processing" element={<MenuProcessing />} />
-                <Route path="/students" element={<StudentList />} />
-              </Routes>
-            </Layout>
-          </ProtectedRoute>
-        } />
-      </Routes>
+          {/* Protected Routes */}
+          <Route path="/*" element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <Layout userRole={userRole} onLogout={handleLogout}>
+                <Routes>
+                  <Route path="/" element={<Navigate to="/mess-committee" replace />} />
+                  <Route path="/mess-committee" element={<MessCommiteeMeeting />} />
+                  <Route path="/token-allocation" element={<TokenAllocation />} />
+                  <Route path="/poll" element={<Poll />} />
+                  <Route path="/volunteers" element={<Volunteers />} />
+                  <Route path="/feedback" element={<Feedback />} />
+                  <Route path="/complaint" element={<Complaint />} />
+                  <Route path="/menu" element={<WeeklyOverview />} />
+                  <Route path="/menu/:dayId" element={<DayView />} />
+                  <Route path="/debug" element={<DebugPage />} />
+                  <Route path="/students" element={<StudentList />} />
+                </Routes>
+              </Layout>
+            </ProtectedRoute>
+          } />
+        </Routes>
+      </MenuProvider>
     </BrowserRouter>
   );
 }
