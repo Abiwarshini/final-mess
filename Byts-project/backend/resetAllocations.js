@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const User = require('./src/models/User');
 const Room = require('./src/models/Room');
 const RoomRequest = require('./src/models/RoomRequest');
+const MateRequest = require('./src/models/MateRequest');
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -18,6 +19,9 @@ const resetAll = async () => {
 
         const requestRes = await RoomRequest.deleteMany({});
         console.log(`Deleted ${requestRes.deletedCount} requests.`);
+
+        const mateRes = await MateRequest.deleteMany({});
+        console.log(`Deleted ${mateRes.deletedCount} mate requests.`);
 
         process.exit();
     } catch (error) {

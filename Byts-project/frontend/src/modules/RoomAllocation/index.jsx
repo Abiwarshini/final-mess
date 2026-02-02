@@ -340,8 +340,8 @@ const RoomAllocation = () => {
                                                 <div className="room-info-header">
                                                     <Home size={24} className="room-icon" />
                                                     <div>
-                                                        <p className="room-no">Room {req.room.roomNumber}</p>
-                                                        <p className="room-type">{req.room.type} Sharing</p>
+                                                        <p className="room-no">Room {req.room?.roomNumber}</p>
+                                                        <p className="room-type">{req.room?.type} Sharing</p>
                                                     </div>
                                                 </div>
 
@@ -513,7 +513,7 @@ const RoomAllocation = () => {
                                         <span className="sharing-tag">{req.sharingType} Sharing</span>
                                     </div>
                                     <div className="mate-request-body">
-                                        <p><strong>Room:</strong> {req.room.roomNumber}</p>
+                                        <p><strong>Room:</strong> {req.room?.roomNumber}</p>
                                         <p><strong>Current Mates:</strong></p>
                                         <div className="existing-mates">
                                             <span className="mate-mini-tag">{req.initiator.name}</span>
@@ -560,7 +560,7 @@ const RoomAllocation = () => {
                                             <span className={`mate-status ${req.status}`}>{req.status}</span>
                                         </div>
                                         <div className="mate-request-body">
-                                            <p><strong>Room:</strong> {req.room.roomNumber}</p>
+                                            <p><strong>Room:</strong> {req.room?.roomNumber}</p>
                                             <p><strong>Team:</strong> {req.initiator.name}, {req.existingRoommates.map(m => m.name).join(', ')}</p>
 
                                             {isInitiator && req.status === 'open' && (
