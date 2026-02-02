@@ -67,6 +67,10 @@ const Navbar = ({ userRole, onLogout }) => {
                   <Zap size={16} />
                   <span>Volunteering</span>
                 </NavLink>
+                <NavLink to="/work-transparency" className="dropdown-item" onClick={closeDropdown}>
+                  <Zap size={16} />
+                  <span>Work Transparency</span>
+                </NavLink>
               </div>
             )}
           </div>
