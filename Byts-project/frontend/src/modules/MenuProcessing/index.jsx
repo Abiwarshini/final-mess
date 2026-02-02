@@ -97,9 +97,13 @@ const MenuProcessing = () => {
         }
         setAdminMessage(null);
         try {
+            // Map day index to day name and meal to capitalized format
+            const dayName = DAY_LABELS[Number(adminOptions.day)];
+            const mealCapitalized = adminOptions.meal.charAt(0).toUpperCase() + adminOptions.meal.slice(1);
+
             await menuApi.addOptions(wid, [{
-                day: Number(adminOptions.day),
-                meal: adminOptions.meal,
+                day: dayName,
+                meal: mealCapitalized,
                 foodName: adminOptions.foodName.trim(),
             }]);
             setAdminMessage('Option added.');
@@ -189,10 +193,27 @@ const MenuProcessing = () => {
                         </section>
                     )}
 
-                    {weekData.status === 'VOTING' && userRole === 'student' && (
+                    {weekData.status === 'VOTING' && (
                         <section className="menu-vote-section">
-                            <h3>Vote for the week</h3>
-                            <p className="menu-vote-hint">One vote per day per meal. Your selection is saved immediately.</p>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                <h3>{userRole === 'student' ? 'Vote for the week' : 'Current Voting Options'}</h3>
+                                {isAdmin && (
+                                    <button
+                                        type="button"
+                                        onClick={() => fetchWeek(selectedWeekId || undefined)}
+                                        className="vote-btn"
+                                        style={{ padding: '8px 16px', fontSize: '14px' }}
+                                    >
+                                        🔄 Refresh Votes
+                                    </button>
+                                )}
+                            </div>
+                            {userRole === 'student' && (
+                                <p className="menu-vote-hint">One vote per day per meal. Your selection is saved immediately.</p>
+                            )}
+                            {isAdmin && (
+                                <p className="menu-vote-hint">Live view of voting options and current vote counts. Students can vote for their preferred meals.</p>
+                            )}
                             <div className="menu-vote-grid">
                                 {DAY_LABELS.map((_, day) => (
                                     <div key={day} className="menu-vote-day-card">
@@ -205,30 +226,44 @@ const MenuProcessing = () => {
                                             return (
                                                 <div key={meal} className="menu-vote-meal-block">
                                                     <div className="menu-vote-meal-label">{MEAL_LABELS[meal]}</div>
-                                                            {options.length === 0 ? (
-                                                                <div className="menu-no-options">No options</div>
-                                                            ) : (
-                                                                <div className="menu-option-cards">
-                                                                    {options.map((opt) => {
-                                                                        const voted = selectedId === opt._id;
-                                                                        return (
-                                                                            <div key={opt._id} className={`menu-option-card ${voted ? 'voted' : ''}`}>
-                                                                                <div className="menu-option-name">{opt.foodName}</div>
-                                                                                <div className="menu-option-action">
-                                                                                    <button
-                                                                                        type="button"
-                                                                                        className={voted ? 'voted-btn' : 'vote-btn'}
-                                                                                        onClick={() => handleVote(day, meal, opt._id)}
-                                                                                        disabled={isSubmitting}
-                                                                                    >
-                                                                                        {voted ? '✓ Voted' : 'Vote for this'}
-                                                                                    </button>
-                                                                                </div>
+                                                    {options.length === 0 ? (
+                                                        <div className="menu-no-options">No options</div>
+                                                    ) : (
+                                                        <div className="menu-option-cards">
+                                                            {options.map((opt) => {
+                                                                const voted = selectedId === opt._id;
+                                                                return (
+                                                                    <div key={opt._id} className={`menu-option-card ${voted ? 'voted' : ''}`}>
+                                                                        <div className="menu-option-name">
+                                                                            {opt.foodName}
+                                                                            {isAdmin && opt.votes > 0 && (
+                                                                                <span className="menu-vote-count" style={{
+                                                                                    marginLeft: '8px',
+                                                                                    fontSize: '12px',
+                                                                                    color: '#64748b',
+                                                                                    fontWeight: '600'
+                                                                                }}>
+                                                                                    ({opt.votes} vote{opt.votes !== 1 ? 's' : ''})
+                                                                                </span>
+                                                                            )}
+                                                                        </div>
+                                                                        {userRole === 'student' && (
+                                                                            <div className="menu-option-action">
+                                                                                <button
+                                                                                    type="button"
+                                                                                    className={voted ? 'voted-btn' : 'vote-btn'}
+                                                                                    onClick={() => handleVote(day, meal, opt._id)}
+                                                                                    disabled={isSubmitting}
+                                                                                >
+                                                                                    {voted ? '✓ Voted' : 'Vote for this'}
+                                                                                </button>
                                                                             </div>
-                                                                        );
-                                                                    })}
-                                                                </div>
-                                                            )}
+                                                                        )}
+                                                                    </div>
+                                                                );
+                                                            })}
+                                                        </div>
+                                                    )}
                                                 </div>
                                             );
                                         })}

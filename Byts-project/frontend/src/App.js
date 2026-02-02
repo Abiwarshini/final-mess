@@ -13,14 +13,11 @@ import {
   Feedback,
   Complaint,
   StudentList,
+  MenuProcessing,
   SpecialPermission,
   Events
 } from './modules';
 import Signup from './modules/Auth/Signup';
-import { DayView } from './modules/menu/DayView';
-import { WeeklyOverview } from './modules/menu/WeeklyOverview';
-import { MenuProvider } from './modules/menu/MenuContext';
-import { DebugPage } from './modules/menu/DebugPage';
 import './App.css';
 
 // Protected Route Component

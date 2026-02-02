@@ -7,5 +7,6 @@ export { default as WorkTransparency } from './WorkTransparency';
 export { default as Feedback } from './Feedback';
 export { default as Complaint } from './Complaint';
 export { default as StudentList } from './StudentList'; // Added StudentList
+export { default as MenuProcessing } from './MenuProcessing';
 export { default as SpecialPermission } from './specialPermission';
 export { default as Events } from './Events';

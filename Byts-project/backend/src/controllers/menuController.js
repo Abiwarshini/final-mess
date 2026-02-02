@@ -21,24 +21,83 @@ const getWeek = async (req, res) => {
             return res.status(404).json({ message: 'No active week found' });
         }
 
-        // Populate options
+        // Populate options with vote counts
         const options = await MenuOption.find({ weekId: week._id });
 
-        // Group options by day and meal
-        const menuStructure = {};
-        const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-        const meals = ['Breakfast', 'Lunch', 'Dinner'];
+        // Map backend status to frontend format
+        const statusMap = {
+            'Voting Open': 'VOTING',
+            'Voting Closed': 'CLOSED',
+            'Finalized': 'FINALIZED'
+        };
 
-        days.forEach(day => {
-            menuStructure[day] = {};
-            meals.forEach(meal => {
-                menuStructure[day][meal] = options.filter(o => o.day === day && o.meal === meal);
-            });
+        // Group options by day index (0-6) and meal (breakfast, lunch, dinner)
+        const optionsByDayMeal = {};
+        const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+        const mealMap = {
+            'Breakfast': 'breakfast',
+            'Lunch': 'lunch',
+            'Dinner': 'dinner'
+        };
+
+        // Initialize structure
+        for (let dayIndex = 0; dayIndex < 7; dayIndex++) {
+            optionsByDayMeal[dayIndex] = {
+                breakfast: [],
+                lunch: [],
+                dinner: []
+            };
+        }
+
+        // Populate with options
+        options.forEach(option => {
+            const dayIndex = days.indexOf(option.day);
+            const mealKey = mealMap[option.meal];
+
+            if (dayIndex !== -1 && mealKey) {
+                optionsByDayMeal[dayIndex][mealKey].push({
+                    _id: option._id,
+                    foodName: option.name, // Map 'name' to 'foodName' for frontend
+                    votes: option.votes || 0,
+                    day: option.day,
+                    meal: option.meal
+                });
+            }
         });
 
+        // Build finalized menu structure if status is Finalized
+        let finalMenuByDayMeal = null;
+        if (week.status === 'Finalized' && week.finalizedMenu) {
+            finalMenuByDayMeal = {};
+            for (let dayIndex = 0; dayIndex < 7; dayIndex++) {
+                const dayName = days[dayIndex];
+                finalMenuByDayMeal[dayIndex] = {
+                    breakfast: {
+                        foodName: week.finalizedMenu[dayName]?.Breakfast || 'N/A',
+                        voteCount: null
+                    },
+                    lunch: {
+                        foodName: week.finalizedMenu[dayName]?.Lunch || 'N/A',
+                        voteCount: null
+                    },
+                    dinner: {
+                        foodName: week.finalizedMenu[dayName]?.Dinner || 'N/A',
+                        voteCount: null
+                    }
+                };
+            }
+        }
+
         res.json({
-            week,
-            menu: menuStructure
+            weeklyMenu: {
+                _id: week._id,
+                weekStartDate: week.startDate,
+                weekEndDate: week.endDate,
+                status: week.status
+            },
+            status: statusMap[week.status] || 'VOTING',
+            optionsByDayMeal,
+            finalMenuByDayMeal
         });
     } catch (err) {
         res.status(400).json({ message: err.message || 'Failed to get week' });
@@ -113,7 +172,7 @@ const addOptions = async (req, res) => {
                 weekId: weeklyMenuId,
                 day: opt.day,
                 meal: opt.meal,
-                name: opt.name
+                name: opt.foodName || opt.name // Accept foodName from frontend, save as name
             });
             createdOptions.push(menuOption);
         }
@@ -215,8 +274,50 @@ const getVotes = async (req, res) => {
             return res.status(400).json({ message: 'weekId is required' });
         }
 
-        const votes = await Vote.find({ weekId }).populate('user', 'name email');
-        res.json(votes);
+        // Get all votes for the week
+        const votes = await Vote.find({ weekId }).populate('user', 'name email').populate('menuOptionId');
+
+        // Get all options for the week to include vote counts
+        const options = await MenuOption.find({ weekId });
+
+        // Build aggregated statistics
+        const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+        const mealMap = {
+            'Breakfast': 'breakfast',
+            'Lunch': 'lunch',
+            'Dinner': 'dinner'
+        };
+
+        const byDayMeal = {};
+
+        // Initialize structure
+        for (let dayIndex = 0; dayIndex < 7; dayIndex++) {
+            byDayMeal[dayIndex] = {
+                breakfast: [],
+                lunch: [],
+                dinner: []
+            };
+        }
+
+        // Populate with vote counts from options
+        options.forEach(option => {
+            const dayIndex = days.indexOf(option.day);
+            const mealKey = mealMap[option.meal];
+
+            if (dayIndex !== -1 && mealKey && option.votes > 0) {
+                byDayMeal[dayIndex][mealKey].push({
+                    foodName: option.name,
+                    count: option.votes,
+                    optionId: option._id
+                });
+            }
+        });
+
+        res.json({
+            totalVotes: votes.length,
+            byDayMeal,
+            votes // Include raw vote data for detailed analysis if needed
+        });
     } catch (err) {
         res.status(400).json({ message: err.message || 'Failed to get votes' });
     }
