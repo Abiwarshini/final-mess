@@ -1,61 +1,81 @@
 const BASE_URL = 'http://localhost:5000/api';
 
-const getHeaders = () => {
-    const headers = {
-        'Content-Type': 'application/json',
-    };
-    const user = JSON.parse(localStorage.getItem('currentUser'));
-    if (user && user.token) {
-        headers['Authorization'] = `Bearer ${user.token}`;
+const getAuthHeader = () => {
+    const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    return user && user.token ? { Authorization: `Bearer ${user.token}` } : {};
+};
+
+const parseResponse = async (response) => {
+    const contentType = response.headers.get('content-type') || '';
+    if (contentType.includes('application/json')) {
+        return response.json();
     }
-    return headers;
+    // If not JSON (e.g. HTML error page), return text so caller can handle/error
+    return response.text();
 };
 
 export const api = {
     get: async (endpoint) => {
         const response = await fetch(`${BASE_URL}${endpoint}`, {
             method: 'GET',
-            headers: getHeaders(),
+            headers: { ...getAuthHeader() },
         });
+        const data = await parseResponse(response);
         if (!response.ok) {
-            const error = await response.json();
-            throw new Error(error.message || 'Something went wrong');
+            const message = typeof data === 'string' ? data : data.message;
+            throw new Error(message || 'Something went wrong');
         }
-        return response.json();
+        return data;
     },
-    post: async (endpoint, body) => {
+    post: async (endpoint, body, options = {}) => {
+        const isFormData = typeof FormData !== 'undefined' && body instanceof FormData;
+        const headers = { ...getAuthHeader(), ...(options.headers || {}) };
+        // If sending FormData, let browser set Content-Type (including boundary)
+        if (!isFormData && !headers['Content-Type']) {
+            headers['Content-Type'] = 'application/json';
+        }
+
         const response = await fetch(`${BASE_URL}${endpoint}`, {
             method: 'POST',
-            headers: getHeaders(),
-            body: JSON.stringify(body),
+            headers,
+            body: isFormData ? body : JSON.stringify(body),
         });
+        const data = await parseResponse(response);
         if (!response.ok) {
-            const error = await response.json();
-            throw new Error(error.message || 'Something went wrong');
+            const message = typeof data === 'string' ? data : data.message;
+            throw new Error(message || 'Something went wrong');
         }
-        return response.json();
+        return data;
     },
-    put: async (endpoint, body) => {
+    put: async (endpoint, body, options = {}) => {
+        const isFormData = typeof FormData !== 'undefined' && body instanceof FormData;
+        const headers = { ...getAuthHeader(), ...(options.headers || {}) };
+        if (!isFormData && !headers['Content-Type']) {
+            headers['Content-Type'] = 'application/json';
+        }
+
         const response = await fetch(`${BASE_URL}${endpoint}`, {
             method: 'PUT',
-            headers: getHeaders(),
-            body: JSON.stringify(body),
+            headers,
+            body: isFormData ? body : JSON.stringify(body),
         });
+        const data = await parseResponse(response);
         if (!response.ok) {
-            const error = await response.json();
-            throw new Error(error.message || 'Something went wrong');
+            const message = typeof data === 'string' ? data : data.message;
+            throw new Error(message || 'Something went wrong');
         }
-        return response.json();
+        return data;
     },
     delete: async (endpoint) => {
         const response = await fetch(`${BASE_URL}${endpoint}`, {
             method: 'DELETE',
-            headers: getHeaders(),
+            headers: { ...getAuthHeader() },
         });
+        const data = await parseResponse(response);
         if (!response.ok) {
-            const error = await response.json();
-            throw new Error(error.message || 'Something went wrong');
+            const message = typeof data === 'string' ? data : data.message;
+            throw new Error(message || 'Something went wrong');
         }
-        return response.json();
+        return data;
     }
 };

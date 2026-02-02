@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Plus, Users, X } from 'lucide-react';
+import { Plus, Users } from 'lucide-react';
 import { api } from '../../utils/api';
 import './style.css';
 

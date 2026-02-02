@@ -2,5 +2,39 @@
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.feedback-hero { display:flex; align-items:baseline; gap:16px; justify-content:space-between }
+.feedback-hero .muted { color: #6b7280; margin:4px 0 0 }
+.avg-rating { font-weight:700; color:var(--primary-color); font-size:18px }
+.avg-rating .sub { font-weight:500; color:#6b7280; font-size:13px; margin-left:6px }
+
+.feedback-form-card { margin-top:18px; padding:18px; border-radius:8px; background:#fff; box-shadow:var(--card-shadow); }
+.feedback-form-card .label { display:block; margin-bottom:8px; font-weight:600; color:#374151 }
+.rating-stars { display:flex; gap:6px; align-items:center }
+.star { background:transparent; border:1px solid transparent; padding:6px; border-radius:6px; cursor:pointer; color:#d1d5db }
+.star.active { color: #f59e0b; background: rgba(245,158,11,0.06); border-color: rgba(245,158,11,0.12) }
+.star-btn:focus, .star:focus { outline:2px solid rgba(59,130,246,0.12); outline-offset:2px }
+.anon { display:flex; gap:8px; align-items:center; margin-top:8px; color:#374151 }
+
+.feedback-list { margin-top:20px }
+.feedback-card { padding:12px 14px; border-radius:8px; background:#fff; box-shadow:var(--card-shadow); margin-bottom:12px }
+.card-head { display:flex; gap:12px; align-items:center }
+.avatar { width:40px; height:40px; border-radius:50%; background:#eef2ff; display:grid; place-items:center; font-weight:700; color: #4f46e5 }
+.meta { color:#9ca3af; font-size:13px; margin-top:4px }
+.rating-badge { background: #fffbeb; color:#b45309; padding:4px 8px; border-radius:8px; font-weight:700; margin-left:8px }
+.desc { margin:12px 0 0; color:#374151 }
+.meta-row { color:#6b7280; font-size:13px; margin-top:10px }
+.meta-row .dot { margin: 0 8px; color:#d1d5db }
+.feedback-form-card select { width:100%; padding:8px 10px; border-radius:8px; border:1px solid #e6e9ef; background:#fff }
+.feedback-form-card select:focus { outline:2px solid rgba(59,130,246,0.08); outline-offset:2px }
+.empty-state { display:flex; gap:12px; align-items:center; color:#6b7280; padding:28px; justify-content:center }
+
+/* responsive */
+@media (min-width:900px) {
+  .form-grid { display:grid; grid-template-columns: 1fr 1fr; gap:14px }
+}
+@media (max-width:900px) {
+  .form-grid { display:block }
 }
