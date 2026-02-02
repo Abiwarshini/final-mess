@@ -52,7 +52,7 @@ const Navbar = ({ userRole, onLogout }) => {
             </button>
             {openDropdown === 'events' && (
               <div className="dropdown-menu">
-                <NavLink to="/poll" className="dropdown-item" onClick={closeDropdown}>
+                <NavLink to="/events" className="dropdown-item" onClick={closeDropdown}>
                   <Zap size={16} />
                   <span>Events & Announcements</span>
                 </NavLink>
