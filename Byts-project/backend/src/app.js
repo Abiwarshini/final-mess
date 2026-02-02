@@ -22,6 +22,8 @@ app.use('/api/complaints', complaintRoutes);
 app.use('/api/students', studentRoutes);
 app.use('/api/volunteering', volunteeringRoutes);
 app.use('/api', pollRoutes);
+app.use('/api/special-permission', require('./routes/leaveRequestRoutes'));
+app.use('/api/events', require('./routes/eventRoutes'));
 
 app.get('/', (req, res) => {
     res.send('API is running...');

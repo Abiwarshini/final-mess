@@ -148,7 +148,7 @@ const Complaint = () => {
                 </div>
                 <div>
                   <strong>{c.isAnonymous ? "Anonymous" : c.studentName}</strong>
-                  <p className="meta">{formatDate(c.date)} • {c.category}</p>
+                  <p className="meta">{formatDate(c.createdAt)} • {c.category}</p>
                 </div>
                 <span className={`status ${c.status === "Resolved" ? "ok" : "pending"}`}>
                   {c.status}

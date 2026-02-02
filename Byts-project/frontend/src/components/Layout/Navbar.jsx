@@ -1,13 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import {
-  Users,
-  Ticket,
-  Vote,
-  HandHeart,
-  MessageSquare,
-  AlertCircle,
-  Utensils,
   LogOut
 } from 'lucide-react';
 import './style.css';
@@ -30,10 +23,12 @@ const Navbar = ({ userRole, onLogout }) => {
           <NavLink to="/mess-committee" className="top-nav-item">Committee</NavLink>
           <NavLink to="/token-allocation" className="top-nav-item">Token</NavLink>
           <NavLink to="/poll" className="top-nav-item">Poll</NavLink>
+          <NavLink to="/events" className="top-nav-item">Events</NavLink>
           <NavLink to="/volunteers" className="top-nav-item">Volunteers</NavLink>
           <NavLink to="/feedback" className="top-nav-item">Feedback</NavLink>
           <NavLink to="/complaint" className="top-nav-item">Complaint</NavLink>
           <NavLink to="/menu-processing" className="top-nav-item">Menu</NavLink>
+          <NavLink to="/special-permission" className="top-nav-item">Special Permission</NavLink>
 
           {userRole === 'warden' && (
             <NavLink to="/students" className="top-nav-item">Students</NavLink>
