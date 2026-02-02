@@ -66,9 +66,9 @@ const RoomAllocation = () => {
 
   const getRoomColor = (status) => {
     switch (status) {
-      case 'booked': return '#22c55e'; // Green
-      case 'hold': return '#eab308'; // Yellow
-      case 'empty': return '#ffffff'; // White
+      case 'booked': return '#E2E8F0'; // Muted light gray-blue
+      case 'hold': return '#BFDFFF'; // Gentle pastel blue
+      case 'empty': return '#F5FAFF'; // Very light blue
       default: return '#ffffff';
     }
   };
@@ -183,15 +183,15 @@ const RoomAllocation = () => {
         <div className="rooms-section">
           <div className="legend">
             <div className="legend-item">
-              <div className="legend-color" style={{ backgroundColor: '#22c55e' }}></div>
+              <div className="legend-color" style={{ backgroundColor: '#E2E8F0' }}></div>
               <span>Fully Booked</span>
             </div>
             <div className="legend-item">
-              <div className="legend-color" style={{ backgroundColor: '#eab308' }}></div>
+              <div className="legend-color" style={{ backgroundColor: '#BFDFFF' }}></div>
               <span>Partially Occupied</span>
             </div>
             <div className="legend-item">
-              <div className="legend-color" style={{ backgroundColor: '#ffffff', border: '1px solid #d1d5db' }}></div>
+              <div className="legend-color" style={{ backgroundColor: '#F5FAFF', border: '1px solid #4A90E2' }}></div>
               <span>Available</span>
             </div>
           </div>
