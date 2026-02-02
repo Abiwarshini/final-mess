@@ -34,6 +34,7 @@ const Navbar = ({ userRole, onLogout }) => {
           <NavLink to="/feedback" className="top-nav-item">Feedback</NavLink>
           <NavLink to="/complaint" className="top-nav-item">Complaint</NavLink>
           <NavLink to="/menu-processing" className="top-nav-item">Menu</NavLink>
+          <NavLink to="/work-transparency" className="top-nav-item">Work Transparency</NavLink>
 
           {userRole === 'warden' && (
             <NavLink to="/students" className="top-nav-item">Students</NavLink>
