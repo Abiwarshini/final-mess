@@ -9,6 +9,7 @@ const studentRoutes = require('./routes/studentRoutes');
 const volunteeringRoutes = require('./routes/volunteeringRoutes');
 const pollRoutes = require('./routes/pollRoutes');
 const workTransparencyRoutes = require('./routes/workTransparencyRoutes');
+const roomRoutes = require('./routes/roomRoutes');
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use('/api/students', studentRoutes);
 app.use('/api/volunteering', volunteeringRoutes);
 app.use('/api', pollRoutes);
 app.use('/api/work-transparency', workTransparencyRoutes);
+app.use('/api/rooms', roomRoutes);
 
 // Serve uploaded files
 const path = require('path');

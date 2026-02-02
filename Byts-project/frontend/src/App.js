@@ -6,6 +6,7 @@ import Dashboard from './modules/Dashboard';
 import {
   MessCommiteeMeeting,
   TokenAllocation,
+  RoomAllocation,
   Poll,
   Volunteers,
   WorkTransparency,
@@ -33,8 +34,8 @@ function App() {
 
   // Check for existing session
   useEffect(() => {
-    const storedAuth = localStorage.getItem('isAuthenticated');
-    const storedUser = localStorage.getItem('currentUser');
+    const storedAuth = sessionStorage.getItem('isAuthenticated');
+    const storedUser = sessionStorage.getItem('currentUser');
 
     if (storedAuth === 'true' && storedUser) {
       setIsAuthenticated(true);
@@ -46,17 +47,17 @@ function App() {
   const handleLogin = (user) => {
     setIsAuthenticated(true);
     setUserRole(user.role);
-    localStorage.setItem('isAuthenticated', 'true');
-    localStorage.setItem('userRole', user.role);
-    // currentUser is already set in Login.jsx to localStorage, but syncing state here
+    sessionStorage.setItem('isAuthenticated', 'true');
+    sessionStorage.setItem('userRole', user.role);
+    // currentUser is already set in Login.jsx to sessionStorage, but syncing state here
   };
 
   const handleLogout = () => {
     setIsAuthenticated(false);
     setUserRole('student');
-    localStorage.removeItem('isAuthenticated');
-    localStorage.removeItem('userRole');
-    localStorage.removeItem('currentUser');
+    sessionStorage.removeItem('isAuthenticated');
+    sessionStorage.removeItem('userRole');
+    sessionStorage.removeItem('currentUser');
   };
 
   return (
@@ -76,6 +77,7 @@ function App() {
                 <Route path="/" element={<Dashboard userRole={userRole} />} />
                 <Route path="/mess-committee" element={<MessCommiteeMeeting />} />
                 <Route path="/token-allocation" element={<TokenAllocation />} />
+                <Route path="/room-allocation" element={<RoomAllocation />} />
                 <Route path="/poll" element={<Poll />} />
                 <Route path="/volunteers" element={<Volunteers />} />
                 <Route path="/feedback" element={<Feedback />} />
@@ -83,7 +85,7 @@ function App() {
                 <Route path="/menu-processing" element={<MenuProcessing />} />
                 <Route path="/work-transparency" element={<WorkTransparency />} />
                 <Route path="/students" element={<StudentList />} />
-                <Route path="/special-permission" element={<SpecialPermission />} />
+                <Route path="/leaves" element={<SpecialPermission />} />
                 <Route path="/events" element={<Events />} />
               </Routes>
             </Layout>

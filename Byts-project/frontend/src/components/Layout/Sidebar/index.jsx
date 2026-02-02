@@ -72,6 +72,11 @@ const Sidebar = ({ userRole }) => {
                     <span>Rooms</span>
                 </NavLink>
 
+                <NavLink to="/leaves" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
+                    <Clock size={20} />
+                    <span>Leaves</span>
+                </NavLink>
+
                 <NavLink to="/feedback" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
                     <MessageCircle size={20} />
                     <span>Feedback</span>

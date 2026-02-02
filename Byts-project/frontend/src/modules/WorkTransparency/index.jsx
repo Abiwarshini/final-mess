@@ -20,8 +20,8 @@ const WorkTransparency = () => {
   });
 
   useEffect(() => {
-    const role = localStorage.getItem('userRole');
-    const user = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    const role = sessionStorage.getItem('userRole');
+    const user = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
     if (role) setUserRole(role);
     setCurrentUser(user);
     fetchPosts();
@@ -227,9 +227,9 @@ const WorkTransparency = () => {
             {/* Image Preview */}
             {imagePreview && (
               <div style={{ gridColumn: '1 / -1', textAlign: 'center' }}>
-                <img 
-                  src={imagePreview} 
-                  alt="Preview" 
+                <img
+                  src={imagePreview}
+                  alt="Preview"
                   style={{ maxWidth: '200px', maxHeight: '200px', borderRadius: '8px', marginBottom: '10px' }}
                 />
               </div>
@@ -286,8 +286,8 @@ const WorkTransparency = () => {
                   {/* Post Image */}
                   {post.imageUrl && (
                     <div style={{ marginTop: '12px', borderRadius: '10px', overflow: 'hidden' }}>
-                      <img 
-                        src={post.imageUrl} 
+                      <img
+                        src={post.imageUrl}
                         alt={post.caption}
                         style={{ width: '100%', height: 'auto', display: 'block', maxHeight: '400px', objectFit: 'cover' }}
                       />

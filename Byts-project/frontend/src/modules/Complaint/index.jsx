@@ -20,8 +20,8 @@ const Complaint = () => {
   const categories = ["Food", "Cleanliness", "Maintenance", "Discipline", "Others"];
 
   useEffect(() => {
-    const role = localStorage.getItem("userRole") || "student";
-    const user = JSON.parse(localStorage.getItem("currentUser") || "{}");
+    const role = sessionStorage.getItem("userRole") || "student";
+    const user = JSON.parse(sessionStorage.getItem("currentUser") || "{}");
 
     setUserRole(role);
     setCurrentUser(user);
