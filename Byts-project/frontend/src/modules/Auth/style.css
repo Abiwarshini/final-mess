@@ -1,0 +1,248 @@
+.login-page {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-color: #536473;
+    /* Match the sidebar theme */
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.login-container {
+    width: 400px;
+    background: white;
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login-logo {
+    width: 60px;
+    height: 60px;
+    background: #536473;
+    color: white;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 24px;
+    margin: 0 auto 20px auto;
+}
+
+.login-header h1 {
+    font-size: 24px;
+    color: #2D3748;
+    margin: 0 0 8px 0;
+    font-weight: 700;
+}
+
+.login-header p {
+    color: #A0AEC0;
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Role Selector Styles */
+.role-selector {
+    display: flex;
+    background: #F4F7FE;
+    padding: 4px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+}
+
+.role-btn {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 10px;
+    border-radius: 10px;
+    color: #A0AEC0;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 13px;
+}
+
+.role-btn.active {
+    background: white;
+    color: #536473;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    color: #4A5568;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.form-group input {
+    padding: 14px 16px;
+    border: 2px solid #E2E8F0;
+    border-radius: 12px;
+    font-size: 14px;
+    color: #2D3748;
+    transition: all 0.2s;
+    outline: none;
+    background: #F8FAFC;
+}
+
+.form-group input:focus {
+    border-color: #536473;
+    background: white;
+}
+
+.form-group input::placeholder {
+    color: #CBD5E0;
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #718096;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.forgot-password-btn {
+    background: none;
+    border: none;
+    color: #536473;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.login-btn {
+    background: #536473;
+    color: white;
+    padding: 16px;
+    border: none;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 10px;
+}
+
+.login-btn:hover {
+    background: #2D3748;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Banner hidden or simplified for this centered card layout */
+.login-banner {
+    display: none;
+}
+
+/* Signup Specific Overrides to handle more content */
+.signup-container {
+    width: 500px;
+    /* Slightly wider for signup */
+    max-height: 90vh;
+    /* Don't exceed screen height */
+    padding-bottom: 20px;
+}
+
+.signup-scroll {
+    overflow-y: auto;
+    padding-right: 5px;
+    /* Space for scrollbar */
+    max-height: 60vh;
+}
+
+/* Scrollbar for form */
+.signup-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.signup-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.signup-scroll::-webkit-scrollbar-thumb {
+    background: #E2E8F0;
+    border-radius: 3px;
+}
+
+.form-row {
+    display: flex;
+    gap: 16px;
+}
+
+.form-group.half {
+    flex: 1;
+}
+
+.form-select {
+    padding: 14px 16px;
+    border: 2px solid #E2E8F0;
+    border-radius: 12px;
+    font-size: 14px;
+    color: #2D3748;
+    background: #F8FAFC;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+    /* Ensure padding doesn't affect width */
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #718096;
+}
+
+.auth-footer a {
+    color: #536473;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}

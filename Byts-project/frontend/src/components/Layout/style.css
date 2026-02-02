@@ -1,0 +1,180 @@
+:root {
+  --bg-navbar: #5E8395;            /* Top bar blue */
+  --bg-page: #F4F8FB;              /* Light page background */
+  --bg-card: #FFFFFF;             /* White cards */
+
+  --primary-color: #1F3A4A;        /* Dark heading */
+  --text-light: #FFFFFF;
+  --text-muted: #DCE8EE;
+  --text-dark: #1F3A4A;
+
+  --accent-teal: #6BB7C7;          /* Card gradient left */
+  --accent-peach: #F6C1A3;         /* Card gradient right */
+
+  --nav-height: 72px;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-page);
+}
+
+/* Layout */
+.app-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar */
+.top-navbar {
+  height: var(--nav-height);
+  background: var(--bg-navbar);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-icon {
+  width: 36px;
+  height: 36px;
+  background: white;
+  color: var(--bg-navbar);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+}
+
+.logo-text {
+  font-size: 18px;
+  color: white;
+}
+
+.top-nav-menu {
+  display: flex;
+  gap: 10px;
+}
+
+.top-nav-item {
+  text-decoration: none;
+  color: #DCE8EE;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.top-nav-item:hover,
+.top-nav-item.active {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+/* User */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  background: white;
+  color: var(--bg-navbar);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.user-name {
+  font-size: 12px;
+  margin: 0;
+  color: white;
+}
+
+.user-role {
+  font-size: 11px;
+  margin: 0;
+  color: #DCE8EE;
+}
+
+.logout-btn {
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: white;
+  padding: 8px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background: rgba(255,255,255,0.35);
+}
+
+/* Content */
+.main-content {
+  padding: 28px;
+}
+
+.content-area {
+  background: var(--bg-card);
+  border-radius: 24px;
+  min-height: calc(100vh - 140px);
+  padding: 32px;
+  box-shadow: 0 15px 35px rgba(40, 90, 120, 0.12);
+}
+
+/* Dashboard Card Styles (for landing page UI) */
+.dashboard-card {
+  border-radius: 20px;
+  padding: 24px;
+  color: white;
+  background: linear-gradient(135deg, var(--accent-teal), var(--accent-peach));
+}
+
+.dashboard-card.light {
+  background: #FFE5D3;
+  color: #1F3A4A;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .top-nav-menu {
+    display: none;
+  }
+}
