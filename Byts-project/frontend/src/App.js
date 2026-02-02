@@ -11,7 +11,9 @@ import {
   Feedback,
   Complaint,
   MenuProcessing,
-  StudentList
+  StudentList,
+  SpecialPermission,
+  Events
 } from './modules';
 import Signup from './modules/Auth/Signup';
 import './App.css';
@@ -28,8 +30,6 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userRole, setUserRole] = useState('student'); // 'student', 'caretaker', 'warden'
 
-  const [currentUser, setCurrentUser] = useState(null);
-
   // Check for existing session
   useEffect(() => {
     const storedAuth = localStorage.getItem('isAuthenticated');
@@ -39,14 +39,12 @@ function App() {
       setIsAuthenticated(true);
       const parsedUser = JSON.parse(storedUser);
       setUserRole(parsedUser.role);
-      setCurrentUser(parsedUser);
     }
   }, []);
 
   const handleLogin = (user) => {
     setIsAuthenticated(true);
     setUserRole(user.role);
-    setCurrentUser(user);
     localStorage.setItem('isAuthenticated', 'true');
     localStorage.setItem('userRole', user.role);
     // currentUser is already set in Login.jsx to localStorage, but syncing state here
@@ -55,7 +53,6 @@ function App() {
   const handleLogout = () => {
     setIsAuthenticated(false);
     setUserRole('student');
-    setCurrentUser(null);
     localStorage.removeItem('isAuthenticated');
     localStorage.removeItem('userRole');
     localStorage.removeItem('currentUser');
@@ -84,6 +81,8 @@ function App() {
                 <Route path="/complaint" element={<Complaint />} />
                 <Route path="/menu-processing" element={<MenuProcessing />} />
                 <Route path="/students" element={<StudentList />} />
+                <Route path="/special-permission" element={<SpecialPermission />} />
+                <Route path="/events" element={<Events />} />
               </Routes>
             </Layout>
           </ProtectedRoute>
