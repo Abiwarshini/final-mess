@@ -5,12 +5,18 @@ const MateRequest = require('../models/MateRequest');
 
 const getAvailableRooms = async (req, res) => {
     try {
-        const { type, hostel } = req.query;
+        let { type, hostel } = req.query;
+        
+        // Decode hostel if it's URL-encoded
+        if (hostel) {
+            hostel = decodeURIComponent(hostel);
+        }
+        
         console.log('Fetching rooms for:', { type, hostel });
 
         const query = { isFull: false };
         if (type) query.type = Number(type);
-        if (hostel) query.hostel = { $regex: new RegExp(`^${hostel}$`, 'i') };
+        if (hostel) query.hostel = { $regex: new RegExp(`^${hostel.trim()}$`, 'i') };
 
         console.log('Room query:', JSON.stringify(query));
         const rooms = await Room.find(query);
@@ -24,10 +30,16 @@ const getAvailableRooms = async (req, res) => {
 
 const getEligibleStudents = async (req, res) => {
     try {
-        const { hostel, excludeUserId } = req.query;
+        let { hostel, excludeUserId } = req.query;
+        
+        // Decode hostel if it's URL-encoded
+        if (hostel) {
+            hostel = decodeURIComponent(hostel);
+        }
+        
         console.log('Fetching students for:', { hostel, excludeUserId });
         const query = {
-            hostel: { $regex: new RegExp(`^${hostel}$`, 'i') },
+            hostel: { $regex: new RegExp(`^${hostel.trim()}$`, 'i') },
             role: 'student',
             hasRoom: false
         };

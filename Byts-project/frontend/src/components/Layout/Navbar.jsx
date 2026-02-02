@@ -60,7 +60,6 @@ const Navbar = ({ userRole, onLogout }) => {
                   <NavLink to="/token-allocation" className="dropdown-item caretaker-only" onClick={closeDropdown}>
                     <Zap size={16} />
                     <span>Token Generation</span>
-                    <span className="badge">Caretaker</span>
                   </NavLink>
                 )}
                 <NavLink to="/volunteers" className="dropdown-item" onClick={closeDropdown}>
@@ -87,17 +86,13 @@ const Navbar = ({ userRole, onLogout }) => {
             </button>
             {openDropdown === 'food' && (
               <div className="dropdown-menu">
-                <NavLink to="/menu-processing" className="dropdown-item" onClick={closeDropdown}>
+                <NavLink to="/menu" className="dropdown-item" onClick={closeDropdown}>
                   <Zap size={16} />
-                  <span>Stock Check</span>
+                  <span>Food Preference</span>
                 </NavLink>
                 <NavLink to="/mess-committee" className="dropdown-item" onClick={closeDropdown}>
                   <Zap size={16} />
                   <span>Mess Committee</span>
-                </NavLink>
-                <NavLink to="/feedback" className="dropdown-item" onClick={closeDropdown}>
-                  <Zap size={16} />
-                  <span>Food Preference</span>
                 </NavLink>
               </div>
             )}
@@ -128,10 +123,12 @@ const Navbar = ({ userRole, onLogout }) => {
           </div>
 
           {/* Direct Links */}
-          <NavLink to="/room-allocation" className="top-nav-item" onClick={closeDropdown}>
-            <DoorOpen size={18} />
-            <span>ROOM ALLOCATION</span>
-          </NavLink>
+          {userRole === 'student' && (
+            <NavLink to="/room-allocation" className="top-nav-item" onClick={closeDropdown}>
+              <DoorOpen size={18} />
+              <span>ROOM ALLOCATION</span>
+            </NavLink>
+          )}
           <NavLink to="/leaves" className="top-nav-item" onClick={closeDropdown}>
             <Clock size={18} />
             <span>LEAVES</span>

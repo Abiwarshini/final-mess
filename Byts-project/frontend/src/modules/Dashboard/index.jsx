@@ -68,7 +68,7 @@ const Dashboard = ({ userRole }) => {
         <div className="hero-content">
           <div className="hero-text">
             <h1 className="hero-title">
-              HOSTEL — amazing hostel for the free spirited student
+              HOSTEL  amazing hostel for the free spirited student
             </h1>
             <p className="hero-description">
               Experience comfortable living with modern amenities. Your home away from home with 24/7 support and vibrant community.

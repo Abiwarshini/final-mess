@@ -80,7 +80,7 @@ function App() {
                 <Route path="/" element={<Dashboard userRole={userRole} />} />
                 <Route path="/mess-committee" element={<MessCommiteeMeeting />} />
                 <Route path="/token-allocation" element={<TokenAllocation />} />
-                <Route path="/room-allocation" element={<RoomAllocation />} />
+                <Route path="/room-allocation" element={userRole === 'student' ? <RoomAllocation /> : <Navigate to="/" replace />} />
                 <Route path="/poll" element={<Poll />} />
                 <Route path="/volunteers" element={<Volunteers />} />
                 <Route path="/feedback" element={<Feedback />} />

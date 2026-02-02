@@ -246,3 +246,35 @@
 .auth-footer a:hover {
     text-decoration: underline;
 }
+
+/* Form Validation Styles */
+.error-message {
+    display: block;
+    color: #ef4444;
+    font-size: 12px;
+    margin-top: 6px;
+    font-weight: 500;
+}
+
+.form-group input:focus,
+.form-group input:active {
+    border-color: #536473;
+    box-shadow: 0 0 0 3px rgba(83, 100, 115, 0.1);
+}
+
+/* Red border for invalid inputs */
+.form-group input[style*="borderColor: #ef4444"] {
+    border-color: #ef4444 !important;
+    background-color: #fef2f2 !important;
+    animation: shake 0.3s ease-in-out;
+}
+
+.form-group input[style*="borderColor: #ef4444"]:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
