@@ -11,8 +11,8 @@ const Feedback = () => {
   const [form, setForm] = useState({ rating: 5, comments: '', isAnonymous: false, topic: 'Mess' });
 
   useEffect(() => {
-    const u = JSON.parse(localStorage.getItem('currentUser') || 'null');
-    const r = localStorage.getItem('userRole') || 'student';
+    const u = JSON.parse(sessionStorage.getItem('currentUser') || 'null');
+    const r = sessionStorage.getItem('userRole') || 'student';
     setCurrentUser(u);
     setUserRole(r);
     fetchFeedbacks();
@@ -103,7 +103,7 @@ const Feedback = () => {
             <div>
               <label className="label">Rating</label>
               <div className="rating-stars">
-                {[1,2,3,4,5].map((r) => (
+                {[1, 2, 3, 4, 5].map((r) => (
                   <button
                     key={r}
                     type="button"
@@ -159,7 +159,7 @@ const Feedback = () => {
               </div>
 
               {f.comments && <p className="desc">{f.comments}</p>}
-              <div className="meta-row">Topic: <strong>{f.topic}</strong>{f.menuItem ? (<><span className="dot">•</span> Item: <strong>{f.menuItem}</strong></>) : null}</div> 
+              <div className="meta-row">Topic: <strong>{f.topic}</strong>{f.menuItem ? (<><span className="dot">•</span> Item: <strong>{f.menuItem}</strong></>) : null}</div>
             </div>
           ))
         )}

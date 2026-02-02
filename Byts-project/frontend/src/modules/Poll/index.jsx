@@ -28,8 +28,8 @@ const Poll = () => {
     });
 
     useEffect(() => {
-        const role = localStorage.getItem('userRole');
-        const user = JSON.parse(localStorage.getItem('currentUser') || '{}');
+        const role = sessionStorage.getItem('userRole');
+        const user = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
         setUserRole(role);
         setCurrentUser(user);
         fetchPolls();
@@ -131,11 +131,11 @@ const Poll = () => {
         doc.setDrawColor(60, 141, 161);
         doc.setLineWidth(2);
         doc.rect(margin, yPosition, pageWidth - 2 * margin, 35);
-        
+
         doc.setFontSize(10);
         doc.setTextColor(0, 0, 0);
         doc.setFont(undefined, 'normal');
-        
+
         const summaryData = [
             { label: 'Total Students:', value: nonRespondersData.totalStudents },
             { label: 'Responded:', value: nonRespondersData.respondents },
@@ -489,8 +489,8 @@ const Poll = () => {
                                                     const count = poll.responses.filter(r => r.selectedOption === option).length;
                                                     const percentage = poll.responseCount > 0 ? ((count / poll.responseCount) * 100).toFixed(1) : 0;
                                                     return (
-                                                        <div key={option} style={{ 
-                                                            flex: 1, 
+                                                        <div key={option} style={{
+                                                            flex: 1,
                                                             minWidth: '150px',
                                                             padding: '12px',
                                                             background: '#f3f4f6',

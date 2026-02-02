@@ -10,6 +10,7 @@ const volunteeringRoutes = require('./routes/volunteeringRoutes');
 const pollRoutes = require('./routes/pollRoutes');
 const menuRoutes = require('./routes/menuRoutes');
 const workTransparencyRoutes = require('./routes/workTransparencyRoutes');
+const roomRoutes = require('./routes/roomRoutes');
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use('/api/volunteering', volunteeringRoutes);
 app.use('/api', pollRoutes);
 app.use('/api/menu', menuRoutes);
 app.use('/api/work-transparency', workTransparencyRoutes);
+app.use('/api/rooms', roomRoutes);
 
 // Serve uploaded files
 const path = require('path');

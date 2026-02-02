@@ -1,7 +1,7 @@
 const BASE_URL = 'http://localhost:5000/api';
 
 const getAuthHeader = () => {
-    const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    const user = JSON.parse(sessionStorage.getItem('currentUser') || 'null');
     return user && user.token ? { Authorization: `Bearer ${user.token}` } : {};
 };
 

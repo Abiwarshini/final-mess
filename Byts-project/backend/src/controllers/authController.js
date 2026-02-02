@@ -1,6 +1,8 @@
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const fs = require('fs');
+const path = require('path');
 
 const registerUser = async (req, res) => {
     try {
@@ -45,10 +47,18 @@ const authUser = async (req, res) => {
         const { email, password, role } = req.body;
         const user = await User.findOne({ email });
 
+        const logFailure = (reason) => {
+            const logMessage = `[${new Date().toISOString()}] Failed login attempt: ${email} (${reason})\n`;
+            const logPath = path.join(__dirname, '../../security.log');
+            console.warn(logMessage.trim());
+            fs.appendFileSync(logPath, logMessage);
+        };
+
         // Check password and role
         if (user && (await bcrypt.compare(password, user.password))) {
             // Optional: Strict role check
             if (role && user.role !== role) {
+                logFailure('Role mismatch');
                 return res.status(401).json({ message: 'Role mismatch' });
             }
 
@@ -62,7 +72,21 @@ const authUser = async (req, res) => {
                 token: generateToken(user._id)
             });
         } else {
+            logFailure('Invalid email or password');
             res.status(401).json({ message: 'Invalid email or password' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+const getMe = async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id).select('-password');
+        if (user) {
+            res.json(user);
+        } else {
+            res.status(404).json({ message: 'User not found' });
         }
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -75,4 +99,4 @@ const generateToken = (id) => {
     });
 };
 
-module.exports = { registerUser, authUser };
+module.exports = { registerUser, authUser, getMe };
